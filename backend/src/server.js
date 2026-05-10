@@ -13,7 +13,14 @@ const uploadsDir = path.join(process.cwd(), 'uploads');
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like curl/Postman) and any localhost port
+      if (!origin || /^https?:\/\/localhost(:\d+)?$/.test(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
   })
 );
 app.use(express.json());
