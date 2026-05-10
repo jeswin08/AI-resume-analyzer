@@ -1,0 +1,10 @@
+node_modules
+dist
+.env
+.DS_Store
+uploads/*.pdf
+uploads/*.tmp
+backend/uploads
+frontend/.env
+frontend/dist
+backend/dist
